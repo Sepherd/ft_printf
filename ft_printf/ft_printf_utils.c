@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr.c                                       :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arecce <arecce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 14:31:42 by arecce            #+#    #+#             */
-/*   Updated: 2022/03/31 13:21:34 by arecce           ###   ########.fr       */
+/*   Created: 2022/03/31 11:50:54 by arecce            #+#    #+#             */
+/*   Updated: 2022/03/31 19:29:22 by arecce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putunbr(unsigned int nb)
+int	ft_numlen(int nb)
 {
-	const char	*digit;
-	char		*num;
-	int			i;
-	int			len_print;
+	int	count;
 
-	if (nb < 0)
-		return (0);
-	digit = "0123456789";
-	i = ft_numlen(nb);
-	num = (char *)malloc(i + 1);
-	if (!num)
-		return (0);
-	num[i] = '\0';
-	//num = ft_result(num);
-	len_print += ft_putstr(num);
-	return (len_print);
+	count = 0;
+	if (nb <= 0)
+		++count;
+	while (nb && ++count)
+		nb /= 10;
+	return (count);
+}
+
+void	ft_convert(int nb, const char *digit)
+{
+	if (nb > 0)
+	{
+		ft_convert(nb / 10, digit);
+		ft_putchar(digit[nb % 10]);
+	}
 }

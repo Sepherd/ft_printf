@@ -6,7 +6,7 @@
 /*   By: arecce <arecce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:48:09 by arecce            #+#    #+#             */
-/*   Updated: 2022/03/30 18:21:26 by arecce           ###   ########.fr       */
+/*   Updated: 2022/03/31 19:18:25 by arecce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_puthex(unsigned int nb, const char c)
 	{
 		if (c == 'x')
 		{
-			len_print += ft_putchar(digit_low[i] % 16);
+			len_print += ft_putchar(digit_low[i % 16]);
 			nb /= 16;
 		}
 		else if (c == 'X')

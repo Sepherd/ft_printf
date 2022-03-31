@@ -6,69 +6,32 @@
 /*   By: arecce <arecce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:38:01 by arecce            #+#    #+#             */
-/*   Updated: 2022/03/30 18:22:15 by arecce           ###   ########.fr       */
+/*   Updated: 2022/03/31 19:30:33 by arecce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_numlen(int nb)
+int	ft_putnbr(int nb)
 {
-	int	count;
+	const char	*digit;
+	int			len_print;
 
-	count = 0;
-	if (nb <= 0)
-		++count;
-	while (nb && ++count)
-		nb /= 10;
-	return (count);
-}
-
-int	ft_isnegative(int nb, char *num)
-{
+	digit = "0123456789";
+	len_print = ft_numlen(nb);
 	if (nb < 0)
 	{
-		num[0] = '-';
+		ft_putchar('-');
 		if (nb == -2147483648)
 		{
-			num[1] = '2';
+			ft_putchar('2');
 			nb = -147483648;
 		}
 		nb *= -1;
 	}
-	return (nb);
-}
-
-char	*ft_fillnum(char *num, const char *digit, int i, int nb)
-{
 	if (nb == 0)
-		num[--i] = '0';
+		ft_putchar('0');
 	else
-	{
-		while (nb > 0)
-		{
-		num[--i] = digit[nb % 10];
-		nb /= 10;
-		}
-	}
-	return (num);
-}
-
-int	ft_putnbr(int nb)
-{
-	const char	*digit;
-	char		*num;
-	int			i;
-	int			len_print;
-
-	digit = "0123456789";
-	i = ft_numlen(nb);
-	num = (char *)malloc(i + 1);
-	if (!num)
-		return (0);
-	num[i] = '\0';
-	nb = ft_isnegative(nb, num);
-	num = ft_fillnum(num, digit, i, nb);
-	len_print += ft_putstr(num);
+		ft_convert(nb, digit);
 	return (len_print);
 }

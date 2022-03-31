@@ -6,7 +6,7 @@
 /*   By: arecce <arecce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:18:00 by arecce            #+#    #+#             */
-/*   Updated: 2022/03/30 18:20:07 by arecce           ###   ########.fr       */
+/*   Updated: 2022/03/31 19:08:47 by arecce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	ft_printf(const char *str, ...)
 	return (len_print);
 }
 
-int main()
+int	main(void)
 {
-	ft_printf("%c", "a");
+	ft_printf("%d", ft_printf("%d\n", 584101));
+	//ft_printf("%d\n", -2147483648);
 }
